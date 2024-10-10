@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Colores para señalar las secciones */
+        .encriptar {
+            background-color: #e6f7ff; /* Azul claro para la sección de encriptar */
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .encriptado {
+            background-color: #fff3e6; /* Naranja claro para la sección de encriptado */
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .terminos {
+            color: #ff4d4d; /* Rojo para los términos */
+        }
+        .botones {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="encriptar">
+        <textarea 
+            name="texto" 
+            class="texto"
+            id="texto"
+            cols="30"
+            rows="10"
+            placeholder="Ingresa el texto aquí"
+        ></textarea>   
+        <div class="terminos">
+            <p>Solo letras minúsculas</p>
+        </div>
+        <div class="botones">
+            <button class="btn-encriptar" type="button" onclick="encriptar()">
+                Encriptar
+            </button>
+            <input 
+                type="button"
+                class="btn-desencriptar"
+                value="Desencriptar" 
+                onclick="desencriptar()"
+            />
+        </div>
+    </div>
+
+    <div class="encriptado">
+        <!-- Aquí agregamos la sección donde iba la imagen -->
+        <div class="mensaje-encriptado" id="mensaje-encriptado">
+            <h2 id="titulo-mensaje">Ningún mensaje</h2>
+            <p id="parrafo">Ingresa el texto que deseas encriptar o desencriptar</p>
+        </div>
+    </div>
+</div>
+    
+<script>
+    function encriptar() {
+        let texto = document.getElementById("texto").value;
+        let tituloMensaje = document.getElementById("titulo-mensaje");
+        let parrafo = document.getElementById("parrafo");
+        // let muñeco = document.getElementById("muñeco"); // Comentamos la línea de muñeco
+
+        let textoCifrado = texto
+            .replace(/e/gi, "enter")
+            .replace(/i/gi, "ime")
+            .replace(/o/gi, "ai")
+            .replace(/a/gi, "ober")
+            .replace(/u/gi, "ufat");
+
+        if (texto.length != 0) {
+            document.getElementById("texto").value = textoCifrado;
+            tituloMensaje.textContent = "Texto encriptado";
+            parrafo.textContent = "";
+            // muñeco.src = "./img/encriptado.jpg";  // Comentamos la línea de imagen
+        } else {
+            // muñeco.src = "./img/muñeco.png"; // Comentamos la línea de imagen
+            tituloMensaje.textContent = "Texto no encontrado";
+            parrafo.textContent = "Ingresa el texto que deseas encriptar o desencriptar";
+            alert("Debes ingresar algún texto");
+        }
+    }
+
+    function desencriptar() {
+        let textoCifrado = document.getElementById("texto").value;
+        let tituloMensaje = document.getElementById("titulo-mensaje");
+        let parrafo = document.getElementById("parrafo");
+        // let muñeco = document.getElementById("muñeco"); // Comentamos la línea de muñeco
+
+        let textoOriginal = textoCifrado
+            .replace(/enter/gi, "e")
+            .replace(/ime/gi, "i")
+            .replace(/ai/gi, "o")
+            .replace(/ober/gi, "a")
+            .replace(/ufat/gi, "u");
+
+        if (textoCifrado.length != 0) {
+            document.getElementById("texto").value = textoOriginal;
+            tituloMensaje.textContent = "Texto desencriptado";
+            parrafo.textContent = "";
+            muñeco.src = "encritado.png"; // Comentamos la línea de imagen
+        } else {
+            // muñeco.src = "./img/muñeco.png"; // Comentamos la línea de imagen
+            tituloMensaje.textContent = "Texto no encontrado";
+            parrafo.textContent = "Ingresa el texto que deseas encriptar o desencriptar";
+            alert("Debes ingresar algún texto");
+        }
+    }
+</script>
+
+</body>
+</html>
